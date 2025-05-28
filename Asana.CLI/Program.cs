@@ -9,15 +9,17 @@ namespace Asana
         {
             var toDos = new List<ToDo>();
             int choiceInt;
+            var itemCount = 0;
             do
             {
                 Console.WriteLine("Choose a menu option:");
                 Console.WriteLine("1. Create a ToDo");
                 Console.WriteLine("2. List all ToDos");
                 Console.WriteLine("3. List all outstanding ToDos");
-                Console.WriteLine("4. Exit");
+                Console.WriteLine("4. Delete a ToDo");
+                Console.WriteLine("5. Exit");
 
-                var choice = Console.ReadLine() ?? "4";
+                var choice = Console.ReadLine() ?? "5";
 
                 if (int.TryParse(choice, out choiceInt))
                 {
@@ -29,7 +31,10 @@ namespace Asana
                             Console.Write("Description:");
                             var description = Console.ReadLine();
 
-                            toDos.Add(new ToDo { Name = name, Description = description, IsCompleted = false });
+                            toDos.Add(new ToDo { Name = name,
+                                Description = description,
+                                IsCompleted = false,
+                                Id = ++itemCount});
                             break;
                         case 2:
                             toDos.ForEach(Console.WriteLine);
@@ -40,6 +45,18 @@ namespace Asana
                                 .ForEach(Console.WriteLine);
                             break;
                         case 4:
+                            toDos.ForEach(Console.WriteLine);
+                            Console.Write("ToDo to Delete: ");
+                            var toDoChoice = int.Parse(Console.ReadLine() ?? "0");
+                            
+                            var reference = toDos.FirstOrDefault(t => t.Id == toDoChoice);
+                            if(reference != null)
+                            {
+                                toDos.Remove(reference);
+                            }
+
+                            break;
+                        case 5:
                             break;
                         default:
                             Console.WriteLine("ERROR: Unknown menu selection");
@@ -50,7 +67,7 @@ namespace Asana
                     Console.WriteLine($"ERROR: {choice} is not a valid menu selection");
                 }
 
-            } while (choiceInt != 4);
+            } while (choiceInt != 5);
 
         }
     }
