@@ -33,7 +33,7 @@ namespace Asana
                             Console.Write("Description:");
                             var description = Console.ReadLine();
 
-                            toDoSvc.CreateToDo(new ToDo
+                            toDoSvc.AddOrUpdate(new ToDo
                             {
                                 Name = name,
                                 Description = description,
@@ -48,10 +48,27 @@ namespace Asana
                             toDoSvc.DisplayToDos();
                             break;
                         case 4:
-                            toDoSvc.DeleteToDo();
+                            toDoSvc.DisplayToDos(true);
+                            Console.Write("ToDo to Delete: ");
+                            var toDoChoice4 = int.Parse(Console.ReadLine() ?? "0");
+
+                            var reference = toDoSvc.GetById(toDoChoice4);
+                            toDoSvc.DeleteToDo(reference);
                             break;
                         case 5:
-                            toDoSvc.UpdateToDo();
+                            toDoSvc.DisplayToDos(true);
+                            Console.Write("ToDo to Update: ");
+                            var toDoChoice5 = int.Parse(Console.ReadLine() ?? "0");
+                            var updateReference = toDoSvc.GetById(toDoChoice5);
+
+                            if (updateReference != null)
+                            {
+                                Console.Write("Name:");
+                                updateReference.Name = Console.ReadLine();
+                                Console.Write("Description:");
+                                updateReference.Description = Console.ReadLine();
+                            }
+                            toDoSvc.AddOrUpdate(updateReference);
                             break;
                         case 6:
                             break;
