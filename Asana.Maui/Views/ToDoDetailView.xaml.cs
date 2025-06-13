@@ -8,7 +8,7 @@ public partial class ToDoDetailView : ContentPage
 	public ToDoDetailView()
 	{
 		InitializeComponent();
-        BindingContext = new ToDoDetailViewModel();
+        
 	}
 
     private void CancelClicked(object sender, EventArgs e)
@@ -20,5 +20,15 @@ public partial class ToDoDetailView : ContentPage
     {
         (BindingContext as ToDoDetailViewModel)?.AddOrUpdateToDo();
         Shell.Current.GoToAsync("//MainPage");
+    }
+
+    private void ContentPage_NavigatedFrom(object sender, NavigatedFromEventArgs e)
+    {
+
+    }
+
+    private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+        BindingContext = new ToDoDetailViewModel();
     }
 }
