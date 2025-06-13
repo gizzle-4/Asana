@@ -16,6 +16,16 @@ namespace Asana.Maui
         {
             Shell.Current.GoToAsync("//ToDoDetails");
         }
+
+        private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+        {
+            (BindingContext as MainPageViewModel).RefreshPage();
+        }
+
+        private void ContentPage_NavigatedFrom(object sender, NavigatedFromEventArgs e)
+        {
+
+        }
     }
 
 }
