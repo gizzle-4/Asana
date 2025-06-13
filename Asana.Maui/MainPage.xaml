@@ -11,6 +11,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="10*"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!-- Tool Bar-->
                 <Grid Grid.Row="0">
@@ -52,6 +53,10 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <!-- Button Bar -->
+                <Grid Grid.Row="2">
+                    <Button Text="Add New ToDo" Clicked="AddNewClicked"/>
+                </Grid>
             </Grid>
         </VerticalStackLayout>
     </ScrollView>

@@ -12,6 +12,10 @@ namespace Asana.Maui
             BindingContext = new MainPageViewModel();
         }
 
+        private void AddNewClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//ToDoDetails");
+        }
     }
 
 }
