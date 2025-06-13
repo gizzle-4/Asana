@@ -11,6 +11,7 @@ namespace Asana.Library.Models
         public ToDo()
         {
             Id = 0;
+            IsCompleted = false;
         }
         public string? Name { get; set; }
         public string? Description { get; set; }
