@@ -22,6 +22,11 @@ namespace Asana.Maui
             Shell.Current.GoToAsync($"//ToDoDetails?toDoId={selectedId}");
         }
 
+        private void DeleteClicked(object sender, EventArgs e)
+        {
+            (BindingContext as MainPageViewModel)?.DeleteToDo();
+        }
+
         private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
         {
             (BindingContext as MainPageViewModel)?.RefreshPage();
@@ -31,6 +36,7 @@ namespace Asana.Maui
         {
 
         }
+
 
     }
 
