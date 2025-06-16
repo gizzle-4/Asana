@@ -13,6 +13,12 @@ namespace Asana.Maui.ViewModels
         public ToDoDetailViewModel() {
             Model = new ToDo();
         }
+
+        public ToDoDetailViewModel(int id)
+        {
+            Model = ToDoServiceProxy.Current.GetById(id) ?? new ToDo();
+        }
+
         public ToDo? Model { get ; set; }
 
         public List<int> Priorities
