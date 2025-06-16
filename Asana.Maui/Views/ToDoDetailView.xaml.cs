@@ -30,6 +30,6 @@ public partial class ToDoDetailView : ContentPage
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        BindingContext = new ToDoDetailViewModel();
+        BindingContext = new ToDoDetailViewModel(ToDoId);
     }
 }
