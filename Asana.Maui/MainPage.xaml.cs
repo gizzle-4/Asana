@@ -41,6 +41,11 @@ namespace Asana.Maui
         {
             (BindingContext as MainPageViewModel)?.RefreshPage();
         }
+
+        private void ProjectClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync($"//ProjectPage");
+        }
     }
 
 }
