@@ -83,6 +83,12 @@ namespace Asana.Maui.ViewModels
             NotifyPropertyChanged(nameof(ToDos));
         }
 
+        public void HandleSearchClick()
+        {
+            RefreshPage();
+            Query = string.Empty;
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

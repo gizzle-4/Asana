@@ -50,7 +50,7 @@ namespace Asana.Maui
 
         private void SearchClicked(object sender, EventArgs e)
         {
-            (BindingContext as MainPageViewModel)?.RefreshPage();
+            (BindingContext as MainPageViewModel)?.HandleSearchClick();
         }
     }
 
