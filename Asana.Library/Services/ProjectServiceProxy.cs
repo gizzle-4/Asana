@@ -1,4 +1,6 @@
 ﻿using Asana.Library.Models;
+using Asana.Maui.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +20,14 @@ namespace Asana.Library.Services
             }
         }
         private ProjectServiceProxy() {
-            projects = new List<Project>
+            /*projects = new List<Project>
             {
                 new Project{Id = 1, Name = "Project 1"},
                 new Project{Id = 2, Name = "Project 2"},
                 new Project{Id = 3, Name = "Project 3"}
-            }; 
+            }; */
+            var projectData = new WebRequestHandler().Get("/Project").Result;
+            projects = JsonConvert.DeserializeObject<List<Project>>(projectData) ?? new List<Project>();
         }
         private static object _lock = new object();
         private static ProjectServiceProxy? instance;

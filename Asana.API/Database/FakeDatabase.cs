@@ -30,7 +30,10 @@ namespace Asana.API.Database
             {
                 new Project{Id = 1, Name = "Project 1"},
                 new Project{Id = 2, Name = "Project 2"},
-                new Project { Id = 3, Name = "Project 3" }
+                new Project{ Id = 3, Name = "Project 3" },
+                new Project{Id = 4, Name = "Project 4"},
+                new Project{Id = 5, Name = "Project 5"},
+                new Project{ Id = 6, Name = "Project 6" },
             };
 
             nextKeys = new Dictionary<DataType, int>();
