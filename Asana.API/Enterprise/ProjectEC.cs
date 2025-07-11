@@ -5,14 +5,15 @@ namespace Asana.API.Enterprise
 {
     public class ProjectEC
     {
-        public IEnumerable<Project> Get()
+        public IEnumerable<Project>? Get(bool Expand = false)
         {
-            return FakeDatabase.Current.Projects.Take(100);
+            //return FakeDatabase.Current.Projects.Take(100);
+            return FakeDatabase.Current.GetProjects(Expand)?.Take(100);
         }
 
         public Project? GetById(int id)
         {
-            return FakeDatabase.Current.Projects.FirstOrDefault(p => p.Id == id);
+            return FakeDatabase.Current.GetProjects(true)?.FirstOrDefault(p => p.Id == id);
         }
 
         public Project? AddOrUpdate(Project? project)

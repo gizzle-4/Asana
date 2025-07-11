@@ -26,7 +26,7 @@ namespace Asana.Library.Services
                 new Project{Id = 2, Name = "Project 2"},
                 new Project{Id = 3, Name = "Project 3"}
             }; */
-            var projectData = new WebRequestHandler().Get("/Project").Result;
+            var projectData = new WebRequestHandler().Get("/Project/Expand").Result;
             projects = JsonConvert.DeserializeObject<List<Project>>(projectData) ?? new List<Project>();
         }
         private static object _lock = new object();

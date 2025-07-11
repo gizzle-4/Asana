@@ -14,16 +14,16 @@ namespace Asana.API.Database
         }
 
         private List<Project> projects = new List<Project>();
-        public List<Project> Projects { get { return projects; } }
+        //public List<Project> Projects { get { return projects; } }
         private FakeDatabase() {
 
             toDos = new List<ToDo>
                 {
-                    new ToDo{Id = 1, Name = "Task 1", Description = "My Task 1", IsCompleted=true},
-                    new ToDo{Id = 2, Name = "Task 2", Description = "My Task 2", IsCompleted=false },
-                    new ToDo{Id = 3, Name = "Task 3", Description = "My Task 3", IsCompleted=true },
-                    new ToDo{Id = 4, Name = "Task 4", Description = "My Task 4", IsCompleted=false },
-                    new ToDo{Id = 5, Name = "Task 5", Description = "My Task 5", IsCompleted=true }
+                    new ToDo{Id = 1, Name = "Task 1", Description = "My Task 1", IsCompleted=true, ProjectId =1},
+                    new ToDo{Id = 2, Name = "Task 2", Description = "My Task 2", IsCompleted=false, ProjectId = 1 },
+                    new ToDo{Id = 3, Name = "Task 3", Description = "My Task 3", IsCompleted=true , ProjectId = 1},
+                    new ToDo{Id = 4, Name = "Task 4", Description = "My Task 4", IsCompleted=false , ProjectId = 2},
+                    new ToDo{Id = 5, Name = "Task 5", Description = "My Task 5", IsCompleted=true , ProjectId = 3}
                 };
 
             projects = new List<Project>()
@@ -41,6 +41,21 @@ namespace Asana.API.Database
             nextKeys.Add(DataType.Project, 3);
         }
 
+        public List<Project>? GetProjects(bool Expand = false)
+        {
+            if (Expand)
+            {
+                var projectList = new List<Project>();
+                foreach (var project in projects)
+                {
+                    var proj = project;
+                    proj.ToDoList = ToDos.Where(t => t.ProjectId == proj.Id).ToList();
+                    projectList.Add(proj);
+                }
+                return projectList;
+            }
+            return projects;
+        }
         public ToDo? AddOrUpdateToDo(ToDo? toDoToAdd)
         {
             if(toDoToAdd == null)
